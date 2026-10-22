@@ -22,7 +22,7 @@ npm run lint
 
 ## Demo
 
-<video src="assets/video/Screen-Recording.mp4" controls muted playsinline width="360"></video>
+<video src="https://github.com/user-attachments/assets/1041bc69-57d7-4f88-8c97-a7851c9767bf" controls muted playsinline width="360"></video>
 
 1. **Play Now** on Naruto.
 2. Cliff at ~19s (`cliffRatio` 0.2 of `assets/video/naruto/s1e1.mp4`).
