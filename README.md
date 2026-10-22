@@ -1,97 +1,82 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Aether
 
-# Getting Started
+Clickable **bare React Native** mock of an anime micro-drama beta app.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+Delivers the brief:
 
-## Step 1: Start Metro
+1. **Home feed** — hero, categories, poster rows  
+2. **Vertical player** with **episode lock after the cliffhanger**  
+3. **One unlock flow** — watch a short rewarded ad
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+No backend. The ad unlock lasts for the rest of that visit. Opening the player again shows the cliff lock.
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+## Stack
 
-```sh
-# Using npm
-npm start
+- React Native 0.88 (CLI / bare `ios` + `android`)
+- React Navigation (native stack)
+- `react-native-video`
+- Pure `playbackReducer` (Jest-tested) owns lock / unlock / phase
 
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Build and run your app
-
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
-
-### Android
+## Run
 
 ```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+npm install
+bundle install          # first time / Ruby deps
+npm run pods            # CocoaPods (ios/)
+npm start               # Metro
+npm run ios             # or: npm run android
 ```
 
-### iOS
+Requirements: Xcode (iOS), Android Studio / emulator (Android), Node ≥ 22.11.
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
+iOS deployment target is **15.1** (Podfile) so pods build on current Xcode simulator SDKs.
 
 ```sh
-bundle install
+npm test
+npm run typecheck
 ```
 
-Then, and every time you update your native dependencies, run:
+## 2-minute demo script
 
-```sh
-bundle exec pod install
-```
+1. Launch app → **Home** shows **Naruto**.  
+2. Tap **Play Now**.  
+3. Let episode play ~**19s** (cliff ≈ 20% of `assets/video/naruto/s1e1.mp4`).  
+4. Lock sheet appears — tap **Watch a short ad**.  
+5. Stay on the ad **5 seconds** (do not close). Playback resumes past the cliff.  
+6. Leave the player and open it again. The cliff lock shows again (each visit starts locked).
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+Optional: during the ad, tap **Simulate no-fill** (`__DEV__`) to exercise the failed-ad path (stays locked).
 
-```sh
-# Using npm
-npm run ios
+## Swap the episode video
 
-# OR using Yarn
-yarn ios
-```
+Replace [`assets/video/naruto/s1e1.mp4`](assets/video/naruto/s1e1.mp4) with your H.264 MP4 (prefer 9:16), and register the file in [`src/data/assets.ts`](src/data/assets.ts). Titles, seasons, episodes, ratings, genres, and shelves live in [`assets/catalog.json`](assets/catalog.json). Cliff time is that episode's `cliffRatio` times duration (currently `0.2` for a short demo wait on the ~96s clip).
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+## Architecture (why it is shaped this way)
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+| Piece | Role |
+|---|---|
+| `playbackReducer` | Only place `unlocked` becomes `true`; clamps past-cliff while locked |
+| `usePlaybackController` | Video callbacks only `dispatch`; `phase` owns pause |
+| `FakeRewardedAd` | Reward **after** full watch — same idea as TargetVideo / MAX `onUserRewarded`, not on ad open |
+| `CliffhangerLock` | UI for the gate; secondary CTAs do not unlock |
 
-## Step 3: Modify your app
+Production apps would verify rewards server-side before clearing the gate. This mock keeps the unlock in memory for the current visit only.
 
-Now that you have successfully run the app, let's make changes!
+## Manual QA checklist
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+- [ ] Home → Player navigates; Back returns  
+- [ ] Video plays with phone silent switch on (iOS)  
+- [ ] First launch locks once at cliff; frame does not flash past cliff  
+- [ ] Dismiss ad / background app during countdown → still locked  
+- [ ] Finish ad → resumes; the rest of that visit does not re-lock  
+- [ ] Leave the player and open it again → cliff lock shows again  
+- [ ] Bad/missing video → error + Retry, not the paywall  
+- [ ] Primary controls have accessibility labels (Play, Watch ad, Maybe later)
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+## Out of scope
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+Login, Library, real IAP / coin wallet, real ad mediation SDK, OTT / CTV, CDN / CMS.
 
-## Congratulations! :tada:
+## License / assets
 
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+See [`assets/ATTRIBUTION.md`](assets/ATTRIBUTION.md). Demo clip rights are the submitter’s responsibility.
