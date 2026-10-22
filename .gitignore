@@ -66,6 +66,10 @@ yarn-error.log
 # testing
 /coverage
 
+# Leftover import copy. The player uses assets/video/.
+/IMG_2811.MP4
+/IMG_2811.mp4
+
 # Yarn
 .yarn/*
 !.yarn/patches
