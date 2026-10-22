@@ -1,0 +1,253 @@
+{
+  "featuredMovieId": "naruto",
+  "copy": {
+    "app": {
+      "name": "Aether"
+    },
+    "listSeparator": " · ",
+    "accessibilitySeparator": ", ",
+    "home": {
+      "feedLabel": "Aether home feed",
+      "featuredArtwork": "{title} featured artwork",
+      "ratingMeta": "★ {rating}",
+      "ratedAccessibility": "Rated {rating}",
+      "playLabel": "Play Now",
+      "playAccessibilityLabel": "Play featured episode",
+      "playAccessibilityHint": "Opens the vertical player for {title}",
+      "categoriesLabel": "Categories",
+      "allGenresLabel": "All",
+      "genreAccessibility": "{label} category",
+      "emptyCategory": "No titles in this category",
+      "posterHint": "Opens the episode player",
+      "posterWithBadge": "{title}, {badge}"
+    },
+    "player": {
+      "backLabel": "Back",
+      "backAccessibilityLabel": "Go back",
+      "retryLabel": "Retry",
+      "loadingLabel": "Loading video",
+      "playbackErrorTitle": "Playback error",
+      "playbackErrorFallback": "Something went wrong",
+      "durationUnavailable": "Video duration unavailable",
+      "playbackFailed": "Playback failed",
+      "unavailableTitle": "Episode unavailable",
+      "unavailableBody": "No video is bundled for {episode} of {title} yet.",
+      "volumeLabel": "Volume",
+      "muteLabel": "Mute",
+      "unmuteLabel": "Unmute",
+      "playLabel": "Play",
+      "pauseLabel": "Pause",
+      "playGlyph": "▶",
+      "pauseGlyph": "❚❚",
+      "mutedGlyph": "🔇",
+      "audibleGlyph": "🔊",
+      "skipSeconds": 10,
+      "skipBackGlyph": "↺",
+      "skipBackAccessibility": "Back {seconds} seconds",
+      "skipForwardGlyph": "↻",
+      "skipForwardAccessibility": "Forward {seconds} seconds",
+      "positionLabel": "Playback position",
+      "hideControlsAccessibility": "Hide playback controls",
+      "showControlsAccessibility": "Show playback controls",
+      "simulateNoFillLabel": "Simulate no-fill"
+    },
+    "cliffhanger": {
+      "lockedLabel": "Locked",
+      "lockGlyph": "🔒",
+      "title": "Continue the story",
+      "body": "You hit a cliffhanger. Watch a short ad to keep watching past this point.",
+      "watchAdLabel": "Watch a short ad",
+      "watchAdAccessibility": "Watch a short ad to unlock",
+      "laterLabel": "Maybe later",
+      "adFailedNotice": "Ad failed to load. Try again or watch when inventory is available."
+    },
+    "ad": {
+      "accessibilityLabel": "Rewarded advertisement",
+      "label": "Advertisement",
+      "closeAccessibilityLabel": "Close ad",
+      "closeGlyph": "✕",
+      "brand": "Aether Ads",
+      "headline": "Your next obsession starts after this.",
+      "rewardIn": "Reward in {seconds}s",
+      "unlocking": "Unlocking…",
+      "hint": "Stay on this screen to earn the unlock.",
+      "durationMs": 5000
+    }
+  },
+  "genres": [
+    { "id": "romance", "label": "Romance" },
+    { "id": "action", "label": "Action" },
+    { "id": "fantasy", "label": "Fantasy" },
+    { "id": "thriller", "label": "Thriller" },
+    { "id": "anime", "label": "Anime" }
+  ],
+  "categories": [
+    {
+      "id": "trending",
+      "title": "Trending Romance",
+      "movieIds": [
+        "naruto",
+        "neon-vow",
+        "blade-of-ashes",
+        "last-train-home"
+      ]
+    },
+    {
+      "id": "popular",
+      "title": "Popular Micro Dramas",
+      "movieIds": [
+        "crimson-contract",
+        "sky-piercer",
+        "neon-vow",
+        "blade-of-ashes"
+      ]
+    }
+  ],
+  "movies": [
+    {
+      "id": "naruto",
+      "title": "Naruto",
+      "tagline": null,
+      "rating": 4.8,
+      "genres": ["anime"],
+      "badge": "NEW",
+      "poster": "poster_1",
+      "hero": "hero",
+      "seasons": [
+        {
+          "number": 1,
+          "title": "Season 1",
+          "episodes": [
+            {
+              "number": 1,
+              "title": "Minato's Farewell",
+              "label": "Ep 1",
+              "video": "naruto/s1e1",
+              "cliffRatio": 0.2
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "neon-vow",
+      "title": "Neon Vow",
+      "tagline": null,
+      "rating": null,
+      "genres": ["romance"],
+      "badge": null,
+      "poster": "poster_2",
+      "hero": null,
+      "seasons": [
+        {
+          "number": 1,
+          "title": "Season 1",
+          "episodes": [
+            {
+              "number": 1,
+              "title": "Episode 1",
+              "label": "S1 E1",
+              "video": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blade-of-ashes",
+      "title": "Blade of Ashes",
+      "tagline": null,
+      "rating": null,
+      "genres": ["action"],
+      "badge": "PRO",
+      "poster": "poster_3",
+      "hero": null,
+      "seasons": [
+        {
+          "number": 1,
+          "title": "Season 1",
+          "episodes": [
+            {
+              "number": 1,
+              "title": "Episode 1",
+              "label": "S1 E1",
+              "video": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "last-train-home",
+      "title": "Last Train Home",
+      "tagline": null,
+      "rating": null,
+      "genres": ["thriller"],
+      "badge": null,
+      "poster": "poster_4",
+      "hero": null,
+      "seasons": [
+        {
+          "number": 1,
+          "title": "Season 1",
+          "episodes": [
+            {
+              "number": 1,
+              "title": "Episode 1",
+              "label": "S1 E1",
+              "video": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "crimson-contract",
+      "title": "Crimson Contract",
+      "tagline": null,
+      "rating": null,
+      "genres": ["romance"],
+      "badge": null,
+      "poster": "poster_5",
+      "hero": null,
+      "seasons": [
+        {
+          "number": 1,
+          "title": "Season 1",
+          "episodes": [
+            {
+              "number": 1,
+              "title": "Episode 1",
+              "label": "S1 E1",
+              "video": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sky-piercer",
+      "title": "Sky Piercer",
+      "tagline": null,
+      "rating": null,
+      "genres": ["action"],
+      "badge": "NEW",
+      "poster": "poster_6",
+      "hero": null,
+      "seasons": [
+        {
+          "number": 1,
+          "title": "Season 1",
+          "episodes": [
+            {
+              "number": 1,
+              "title": "Episode 1",
+              "label": "S1 E1",
+              "video": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
